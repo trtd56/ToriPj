@@ -17,7 +17,7 @@ ary=(`echo $result`)
 
 # 目的の物体が認識されているか確認
 # 実際の配列は確率と認識物体が交互に格納されているが、確率の方は無視する
-echo -e "\n--- predict ---" 2>> log/tmp.log
+echo -e "\n--- predict ---" >> log/tmp.log
 is_save=0
 for i in `seq 1 ${#ary[@]}`
 do
