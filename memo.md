@@ -98,8 +98,46 @@ $ python
 $ alsamixer
 ~~~
 
+# カメラの映像確認
+
+- インストール
+
+~~~
+$ sudo apt-get install -y subversion libjpeg-dev imagemagick
+$ svn co https://svn.code.sf.net/p/mjpg-streamer/code/mjpg-streamer mjpg-streamer
+$ cd mjpg-streamer
+$ make
+$ sudo make install
+~~~
+
+- mjpg-streamerフォルダ内に起動スクリプトの作成
+
+~~~
+$ vi start_server.sh
+
+
+#!/bin/sh
+  
+PORT="8080" #ポート番号
+ID="user" #ID
+PW="passward" #パスワード
+SIZE="320x240" #画面サイズ
+FRAMERATE="2" #フレームレート
+export LD_LIBRARY_PATH=/usr/local/lib
+./mjpg_streamer \
+    -i "input_uvc.so -f $FRAMERATE -r $SIZE -d /dev/video0 -y -n" \
+    -o "output_http.so -w /usr/local/www -p $PORT -c $ID:$PW"
+~~~
+
+- 確認
+
+~~~
+$ sudo sh start_server.sh
+~~~
+
 # 参考
 
 - [Raspberry PiでDeep Learning「DeepBeliefSDKで画像認識」](http://karaage.hatenadiary.jp/entry/2015/12/16/073000)
 - [はじめてのRaspberry PIで監視カメラを作ってみた。](http://qiita.com/kinpira/items/bf1df2c1983ba79ba455)
 - [Raspberry Piでwav/mp3ファイルを再生する方法(python編)](http://qiita.com/Nyanpy/items/cb4ea8dc4dc01fe56918)
+- [USBカメラで監視カメラ](http://make.bcde.jp/raspberry-pi/usb%E3%82%AB%E3%83%A1%E3%83%A9%E3%81%A7%E7%9B%A3%E8%A6%96%E3%82%AB%E3%83%A1%E3%83%A9/)
