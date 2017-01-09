@@ -90,8 +90,16 @@ $ python
 >>> slacker.chat.post_message(channel_name, message)
 ~~~
 
+# 音を鳴らす
+
+- 音量調節コマンド
+
+~~~
+$ alsamixer
+~~~
 
 # 参考
 
 - [Raspberry PiでDeep Learning「DeepBeliefSDKで画像認識」](http://karaage.hatenadiary.jp/entry/2015/12/16/073000)
 - [はじめてのRaspberry PIで監視カメラを作ってみた。](http://qiita.com/kinpira/items/bf1df2c1983ba79ba455)
+- [Raspberry Piでwav/mp3ファイルを再生する方法(python編)](http://qiita.com/Nyanpy/items/cb4ea8dc4dc01fe56918)

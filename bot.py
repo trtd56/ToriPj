@@ -1,8 +1,13 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import sys
 from slacker import Slacker
+import pygame.mixer
+import time
 
+SOUNDFILE="/home/pi/ToriPj/sound.mp3"
+SOUNDTIME=3.5
 
 args = sys.argv
 token = args[1]
@@ -30,3 +35,10 @@ channel_id = slacker.channels.list().body["channels"][0]["id"]
 slacker.chat.post_message(channel_name, message)
 result = slacker.files.upload(pict_path, channels=[channel_id])
 slacker.pins.add(channel=channel_id, file_=result.body['file']['id'])
+
+pygame.init()
+pygame.mixer.init()
+pygame.mixer.music.load(SOUNDFILE)
+pygame.mixer.music.play(-1)
+time.sleep(SOUNDTIME)
+pygame.mixer.music.stop()
